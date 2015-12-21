@@ -5,9 +5,9 @@ package com.kharevich.config;
  */
 public interface CQLConfig {
 
-    public static final String KEYSPACE = "java_load";
+    public static final String KEYSPACE = "java_load_t";
 
-    public static final String TABLE = "user";
+    public static final String TABLE = "user_new_11";
 
     public static final String DEFAULT_OUTPUT_DIR = "./data";
 

@@ -17,7 +17,7 @@ import static com.kharevich.config.CQLConfig.*;
  */
 public class CreateSSTables {
 
-    private static int OPERATIONS_AMOUNT = 1000;
+    private static int OPERATIONS_AMOUNT = 10000;
 
     /**
      * Default output directory

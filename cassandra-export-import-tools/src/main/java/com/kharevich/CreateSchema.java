@@ -13,7 +13,7 @@ import static com.kharevich.config.CQLConfig.CREATE_KEYSPACE;
 public class CreateSchema {
 
     public static void main(String[] args) {
-        Cluster cluster = Cluster.builder().addContactPoint("192.168.2.58").withCredentials("cassandra", "cassandra").build();
+        Cluster cluster = Cluster.builder().addContactPoint("localhost").withCredentials("cassandra", "cassandra").build();
         Session session = cluster.connect();
 
         session.execute(new SimpleStatement(CQLConfig.CREATE_KEYSPACE));
