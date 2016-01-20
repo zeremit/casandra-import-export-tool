@@ -17,7 +17,7 @@ import static com.kharevich.config.CQLConfig.*;
  */
 public class CreateSSTables {
 
-    private static int OPERATIONS_AMOUNT = 10000;
+    private static int OPERATIONS_AMOUNT = 10000000;
 
     /**
      * Default output directory
@@ -40,17 +40,19 @@ public class CreateSSTables {
                 withPartitioner(new Murmur3Partitioner());
         CQLSSTableWriter writer = builder.build();
         DataFactory df = new DataFactory();
+        int op = 0;
+        int operationPerPercent = OPERATIONS_AMOUNT / 100;
         try {
             for (int i = 0; i < OPERATIONS_AMOUNT; i++) {
                 writer.addRow(UUID.randomUUID(), df.getLastName(), df.getName(), df.getEmailAddress(), df.getBirthDate());
 
 //            Insert insertStatement = QueryBuilder.insertInto("sstable_export3", "user").value("uuid", UUID.randomUUID()).value("name", df.getName()).value("surname", df.getLastName()).value("email", df.getEmailAddress()).value("birthday", df.getBirthDate().getTime());
 //            session.execute(insertStatement);
-//            if(op==operationPerPercent){
-//                System.out.println(100*i/OPERATIONS_AMOUNT+"%");
-//                op=0;
-//            }
-//            op++;
+            if(op==operationPerPercent){
+                System.out.println((100*i/OPERATIONS_AMOUNT)+"%");
+                op=0;
+            }
+            op++;
             }
             writer.close();
         } catch (IOException e) {
